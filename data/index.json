@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "bulletins": [
+    {
+      "date": "2026-09-18",
+      "path": "data/bulletins/2026-09-18.json",
+      "article_count": 9,
+      "generated_at": "2026-09-18T08:19:17.884Z"
+    }
+  ]
+}

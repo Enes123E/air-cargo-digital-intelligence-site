@@ -2,10 +2,32 @@
   "schema_version": "1.0",
   "bulletins": [
     {
+      "initial_test_snapshot": false,
+      "date": "2026-09-21",
+      "path": "data/bulletins/2026-09-21.json",
+      "article_count": 5,
+      "generated_at": "2026-09-21T04:00:36.399Z"
+    },
+    {
+      "initial_test_snapshot": false,
+      "date": "2026-09-20",
+      "path": "data/bulletins/2026-09-20.json",
+      "article_count": 9,
+      "generated_at": "2026-09-20T04:00:29.978Z"
+    },
+    {
+      "initial_test_snapshot": false,
+      "date": "2026-09-19",
+      "path": "data/bulletins/2026-09-19.json",
+      "article_count": 11,
+      "generated_at": "2026-09-19T04:00:53.141Z"
+    },
+    {
+      "initial_test_snapshot": true,
       "date": "2026-09-18",
       "path": "data/bulletins/2026-09-18.json",
       "article_count": 9,
-      "generated_at": "2026-09-18T08:19:17.884Z"
+      "generated_at": "2026-09-18T12:41:11.324Z"
     }
   ]
 }

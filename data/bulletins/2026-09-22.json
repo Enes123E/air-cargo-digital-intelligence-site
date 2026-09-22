@@ -367,17 +367,16 @@
     }
   ],
   "concept": {
-    "concept_id": "agentic_ai",
-    "term": "Yapay Zekâ Ajanları (AI Agents)",
-    "cluster": "Yapay Zekâ ve Makine Öğrenmesi",
+    "concept_id": "tactile_sensing",
+    "term": "Dokunsal Algılama (Tactile Sensing)",
+    "cluster": "Nesnelerin İnterneti ve Sensörler",
     "level": "introductory",
-    "explanation_tr": "Belirli bir hedef için adımları planlayan, yetkili araçları kullanan ve sonuçlara göre sonraki eylemini seçen yazılım sistemleridir.",
-    "why_important_tr": "Tek bir yanıt üretmek yerine çok adımlı iş akışlarını yürütebilir; yetki sınırları, izlenebilirlik ve insan onayı kritik önemdedir.",
-    "cargo_potential_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",
-    "cargo_example_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",
+    "explanation_tr": "Bir robotun temas, basınç ve kayma gibi fiziksel etkileşimleri sensörler aracılığıyla algılamasıdır.",
+    "why_important_tr": "Görsel bilginin yetersiz kaldığı hassas tutma ve nesne işleme görevlerinde robota ek geri bildirim sağlar.",
+    "cargo_potential_tr": "Farklı yüzey ve biçimlerdeki gönderilerin kontrollü tutulması ve elleçlenmesinde değerlendirilebilir.",
+    "cargo_example_tr": "Farklı yüzey ve biçimlerdeki gönderilerin kontrollü tutulması ve elleçlenmesinde değerlendirilebilir.",
     "related_article_ids": [
-      "A_baa4408e",
-      "A_d5a5e696"
+      "A_883f31c0"
     ]
   },
   "source_errors": []

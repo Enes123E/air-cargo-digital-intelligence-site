@@ -367,18 +367,17 @@
     }
   ],
   "concept": {
-    "concept_id": "ajanatik_ticaret_agentic_commerce",
-    "term": "Ajanatik Ticaret (Agentic Commerce)",
+    "concept_id": "agentic_ai",
+    "term": "Ajan Tabanlı Yapay Zekâ (Agentic AI)",
     "cluster": "Yapay Zekâ ve Makine Öğrenmesi",
     "level": "introductory",
-    "explanation_tr": "Yapay zeka ajanlarının sadece bilgi sağlamakla kalmayıp, kullanıcı adına ödeme yapma, rezervasyon oluşturma veya tedarik zinciri kararları alma gibi işlemleri otonom olarak gerçekleştirdiği ticaret modelidir.",
-    "why_important_tr": "İş süreçlerinde insan onay mekanizmalarını azaltarak operasyonel hızı milisaniyeler seviyesine indirir ve hata payını minimize eder.",
-    "cargo_potential_tr": "Hava kargoda uçak altı kapasite satın alımı, gümrük ödemeleri ve dinamik fiyatlandırma onaylarının insan müdahalesi olmadan, belirlenen parametreler dahilinde AI ajanları tarafından yönetilmesini sağlayabilir.",
-    "cargo_example_tr": "Hava kargoda uçak altı kapasite satın alımı, gümrük ödemeleri ve dinamik fiyatlandırma onaylarının insan müdahalesi olmadan, belirlenen parametreler dahilinde AI ajanları tarafından yönetilmesini sağlayabilir.",
+    "explanation_tr": "Bir hedef doğrultusunda adım planlayan, gerekli araçları kullanan ve sonuçlara göre eylemini uyarlayan yapay zekâ sistemidir.",
+    "why_important_tr": "Tek bir yanıt üretmek yerine çok adımlı iş akışlarını yürütebilir; yetki sınırları, izlenebilirlik ve insan onayı kritik önemdedir.",
+    "cargo_potential_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",
+    "cargo_example_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",
     "related_article_ids": [
-      "A_d5a5e696",
       "A_baa4408e",
-      "A_cc88ef8d"
+      "A_d5a5e696"
     ]
   },
   "source_errors": []

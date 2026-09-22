@@ -368,10 +368,10 @@
   ],
   "concept": {
     "concept_id": "agentic_ai",
-    "term": "Ajan Tabanlı Yapay Zekâ (Agentic AI)",
+    "term": "Yapay Zekâ Ajanları (AI Agents)",
     "cluster": "Yapay Zekâ ve Makine Öğrenmesi",
     "level": "introductory",
-    "explanation_tr": "Bir hedef doğrultusunda adım planlayan, gerekli araçları kullanan ve sonuçlara göre eylemini uyarlayan yapay zekâ sistemidir.",
+    "explanation_tr": "Belirli bir hedef için adımları planlayan, yetkili araçları kullanan ve sonuçlara göre sonraki eylemini seçen yazılım sistemleridir.",
     "why_important_tr": "Tek bir yanıt üretmek yerine çok adımlı iş akışlarını yürütebilir; yetki sınırları, izlenebilirlik ve insan onayı kritik önemdedir.",
     "cargo_potential_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",
     "cargo_example_tr": "Rezervasyon, istisna yönetimi veya durum takibi gibi çok adımlı süreçlerde kontrollü yardımcı olarak değerlendirilebilir.",

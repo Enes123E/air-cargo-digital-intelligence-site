@@ -2,6 +2,15 @@
   "schema_version": "1.0",
   "bulletins": [
     {
+      "environment": "test",
+      "publication_id": "test:2026-09-22:2026-09-22T08:52:15.366Z",
+      "initial_test_snapshot": true,
+      "date": "2026-09-22",
+      "path": "data/bulletins/2026-09-22.json",
+      "article_count": 9,
+      "generated_at": "2026-09-22T08:52:15.366Z"
+    },
+    {
       "initial_test_snapshot": true,
       "date": "2026-09-21",
       "path": "data/bulletins/2026-09-21.json",

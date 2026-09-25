@@ -3,16 +3,16 @@
   "bulletins": [
     {
       "environment": "test",
-      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
       "initial_test_snapshot": false,
       "date": "2026-09-25",
       "week_id": "2026-W39",
       "frequency": "weekly",
-      "period_start": "2026-09-18T04:03:23.728Z",
-      "period_end": "2026-09-25T04:03:23.728Z",
+      "period_start": "2026-09-18T09:19:15.016Z",
+      "period_end": "2026-09-25T09:19:15.016Z",
       "path": "data/bulletins/2026-W39.json",
-      "article_count": 8,
-      "generated_at": "2026-09-25T04:04:05.018Z"
+      "article_count": 10,
+      "generated_at": "2026-09-25T09:20:02.331Z"
     },
     {
       "environment": "test",

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-25T04:04:05.018Z",
+  "updated_at": "2026-09-25T09:20:02.331Z",
   "records": [
     {
       "url": "https://www.aviationpros.com/ground-support-worldwide/ground-handling/news/55405428/ethiopian-cargo-adds-digital-booking-through-cargoai",
@@ -525,6 +525,76 @@
       "title": "Build a multi-account AI agent with AgentCore Gateway and MCP",
       "published_at": "2026-09-24T16:12:47.000Z",
       "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.stattimes.com/air-cargo/sats-introduces-autonomous-cargo-vehicles-at-changi-1360751",
+      "title": "SATS introduces autonomous cargo vehicles at Changi",
+      "published_at": "2026-09-25T06:16:07.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.stattimes.com/air-cargo/awery-launches-ai-powered-erp-data-access-with-ask-awery-1360740",
+      "title": "Awery launches AI-powered ERP data access with Ask Awery",
+      "published_at": "2026-09-23T12:32:15.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.futuretravelexperience.com/2026/09/united-airlines-launches-automated-earlier-flight-standby-feature-for-disrupted-customers/",
+      "title": "United Airlines launches automated earlier-flight standby feature for disrupted customers",
+      "published_at": "2026-09-19T17:58:19.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://yourstory.com/2026/09/enterprise-ai-startup-ema-raises-series-b-round-led-by-creaegis",
+      "title": "Enterprise AI startup Ema raises $77M in Series B round led by Creaegis",
+      "published_at": "2026-09-24T07:11:19.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://aws.amazon.com/blogs/machine-learning/aderant-builds-intelligent-ticket-triage-with-amazon-nova/",
+      "title": "Aderant builds intelligent ticket triage with Amazon Nova",
+      "published_at": "2026-09-24T16:06:46.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://tech.eu/2026/09/24/kontext-raises-4m-for-runtime-security-platform-for-ai-agents/",
+      "title": "Kontext raises $4M for runtime security platform for AI agents",
+      "published_at": "2026-09-24T12:00:00.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://aws.amazon.com/blogs/machine-learning/speaker-labeled-transcription-with-whisperx-on-sagemaker-ai/",
+      "title": "Speaker-labeled transcription with WhisperX on SageMaker AI",
+      "published_at": "2026-09-24T16:20:12.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.iotinsider.com/industries/communications/us-industry-coalition-warns-of-disruption-to-900mhz-iot-devices/",
+      "title": "US industry coalition warns of disruption to 900MHz IoT devices",
+      "published_at": "2026-09-18T09:46:25.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://travelradar.aero/the-software-error-behind-the-uk-air-traffic-control-failure/",
+      "title": "The Software Error Behind The UK Air Traffic Control Failure",
+      "published_at": "2026-09-23T20:00:46.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://yourstory.com/2026/09/swadeza-bihar-ai-semiconductor-forge-chip-design",
+      "title": "From Bihar to SEMICON India: How Shweta Suman is building Swadeza for the world",
+      "published_at": "2026-09-25T05:20:35.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T09:20:02.331Z",
       "week_id": "2026-W39"
     }
   ]

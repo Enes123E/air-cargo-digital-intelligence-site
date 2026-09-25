@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-24T07:22:54.107Z",
+  "updated_at": "2026-09-25T04:04:05.018Z",
   "records": [
     {
       "url": "https://www.aviationpros.com/ground-support-worldwide/ground-handling/news/55405428/ethiopian-cargo-adds-digital-booking-through-cargoai",
@@ -470,6 +470,62 @@
       "published_at": "2026-09-17T04:00:00.000Z",
       "publication_id": null,
       "week_id": null
+    },
+    {
+      "url": "https://www.aircargonews.net/ground-handler/2026/09/sats-tests-autonomous-vehicles-to-speed-up-changi-handler-operations/",
+      "title": "SATS tests autonomous vehicles to speed up Changi handler operations",
+      "published_at": "2026-09-24T10:25:05.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://airportindustry-news.com/cologne-airport-partners-with-yetimove/",
+      "title": "Cologne Airport Partners with Yetimove",
+      "published_at": "2026-09-24T06:19:20.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.aircargonews.net/technology/2026/09/awery-adds-new-ai-functionality-for-data-interrogation/",
+      "title": "Awery adds new AI functionality for data interrogation",
+      "published_at": "2026-09-23T13:25:42.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.aviationpros.com/ground-support-worldwide/news/55404449/berlin-brandenburg-tests-roboxi-for-automated-airside-inspections",
+      "title": "Berlin Brandenburg Tests Roboxi for Automated Airside Inspections",
+      "published_at": "2026-09-23T11:00:00.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://www.therobotreport.com/5-million-robots-now-working-factories-worldwide-ifr-reports/",
+      "title": "5 million robots are now at work in factories worldwide, reports the IFR",
+      "published_at": "2026-09-24T20:15:51.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://techcrunch.com/2026/09/24/nexterity-wants-to-automate-the-hard-dangerous-part-of-pipefitting/",
+      "title": "Nexterity wants to automate the hard, dangerous part of pipefitting",
+      "published_at": "2026-09-24T20:45:00.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://techcrunch.com/2026/09/24/meet-feather-the-startup-building-the-android-of-robotics-for-developers/",
+      "title": "Meet Feather, the startup building the ‘Android of robotics’ for developers",
+      "published_at": "2026-09-24T18:52:38.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
+    },
+    {
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-a-multi-account-ai-agent-with-agentcore-gateway-and-mcp/",
+      "title": "Build a multi-account AI agent with AgentCore Gateway and MCP",
+      "published_at": "2026-09-24T16:12:47.000Z",
+      "publication_id": "test:2026-W39:2026-09-25T04:04:05.018Z",
+      "week_id": "2026-W39"
     }
   ]
 }

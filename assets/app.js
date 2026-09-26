@@ -8,30 +8,26 @@ const formatDate=d=>{if(!d)return 'Tarih belirtilmedi';const t=new Date(String(d
 const asArray=x=>Array.isArray(x)?x:[];
 const cleanImpact=v=>String(v||'').replace(/^(?:dijitalleşme açısından değerlendirme|teknoloji ve iş etkisi|stratejik değerlendirme)\s*:?\s*/i,'').trim();
 function isoWeek(value){const d=new Date(String(value).slice(0,10)+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+4-(d.getUTCDay()||7));const y=new Date(Date.UTC(d.getUTCFullYear(),0,1));return d.getUTCFullYear()+'-W'+String(Math.ceil((((d-y)/86400000)+1)/7)).padStart(2,'0')}
+function articleWeek(article){return isoWeek(article.date||article.published_at)}
+function articleKey(article){try{const url=new URL(article.url||article.link);for(const key of [...url.searchParams.keys()])if(/^(utm_|fbclid|gclid|mc_cid|mc_eid)/i.test(key))url.searchParams.delete(key);url.hash='';return url.href}catch{return article.record_id||article.article_id||String(article.title_tr||article.title||'')}}
 function weekLabel(value){const m=/^(\d{4})-W(\d{2})$/.exec(value||'');return m?m[1]+' · '+Number(m[2])+'. hafta':value||'Hafta belirtilmedi'}
 function conceptId(c){if(c?.concept_id)return c.concept_id;return String(c?.term||'').toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}
 function canonicalTag(v){const s=String(v||'').toLocaleLowerCase('tr').replace(/[._-]/g,' ');if(/generative|üretken|genai|llm|büyük dil/.test(s))return taxonomy[1];if(/artificial|yapay zek|machine learning|makine öğren|\bai\b|agi|asi|deep learning/.test(s))return taxonomy[0];if(/analytic|veri|data|business intelligence|tahmin/.test(s))return taxonomy[2];if(/rpa|automat|otomasyon|workflow/.test(s))return taxonomy[3];if(/robot|otonom|autonomous|drone|amr/.test(s))return taxonomy[4];if(/iot|sensor|sensör|nesnelerin|rfid|tracking/.test(s))return taxonomy[5];if(/cloud|bulut|platform|saas/.test(s))return taxonomy[6];if(/cyber|siber|security|güvenlik/.test(s))return taxonomy[7];if(/digital twin|dijital ikiz|simulation|simülasyon/.test(s))return taxonomy[8];if(/blockchain|dağıtık|distributed ledger/.test(s))return taxonomy[9];if(/augmented|virtual reality|giyilebilir|wearable|exoskeleton|\bar\b|\bvr\b/.test(s))return taxonomy[10];if(/api|integration|entegrasyon|interoperab|one record/.test(s))return taxonomy[11];return ''}
 function articleTags(a){return [...new Set(asArray(a.technology_tags).map(canonicalTag).filter(Boolean))].slice(0,3)}
 async function fetchJson(path){const res=await fetch(path,{cache:'no-store'});if(!res.ok)throw new Error('Veri dosyası okunamadı');return res.json()}
 function selectedWeek(){return $('bulletin').value}
-function weekBulletins(week){return weeklyBulletins.filter(b=>b._week===week)}
+function weekBulletins(week){return weeklyBulletins.filter(b=>b._issueWeek===week)}
 async function loadWeekly(){
  $('load-state').hidden=false;$('workspace').hidden=true;
  try{
   const index=await fetchJson('./data/index.json'),results=await Promise.allSettled((index.bulletins||[]).map(e=>fetchJson('./'+e.path)));
-  const candidates=results.filter(x=>x.status==='fulfilled').map(x=>({...x.value,_week:x.value.week_id||isoWeek(x.value.bulletin_date)}));
-  const byWeek=new Map();
-  for(const bulletin of candidates){
-   const current=byWeek.get(bulletin._week),rank=(bulletin.frequency==='weekly'?10:0)+(bulletin.initial_test_snapshot===false?2:0);
-   const currentRank=current?((current.frequency==='weekly'?10:0)+(current.initial_test_snapshot===false?2:0)):-1;
-   if(!current||rank>currentRank||(rank===currentRank&&String(bulletin.bulletin_date).localeCompare(String(current.bulletin_date))>0))byWeek.set(bulletin._week,bulletin);
-  }
-  weeklyBulletins=[...byWeek.values()].sort((a,b)=>String(b._week).localeCompare(String(a._week)));
+  const candidates=results.filter(x=>x.status==='fulfilled').map(x=>({...x.value,_issueWeek:x.value.week_id||isoWeek(x.value.bulletin_date)}));
+  weeklyBulletins=candidates.sort((a,b)=>((b.frequency==='weekly'?10:0)+(b.initial_test_snapshot===false?2:0))-((a.frequency==='weekly'?10:0)+(a.initial_test_snapshot===false?2:0))||String(b.bulletin_date).localeCompare(String(a.bulletin_date)));
   if(!weeklyBulletins.length)throw new Error('Henüz okunabilir bülten yok');
-  weeks=[...new Set(weeklyBulletins.map(b=>b._week))].sort().reverse();availableWeeks=new Set(weeks);
-  $('bulletin').min=weeks.at(-1);$('bulletin').max=weeks[0];$('bulletin').value=weeks[0];
   const map=new Map();
-  weeklyBulletins.forEach(b=>asArray(b.items).forEach(a=>{const key=a.record_id||a.url||a.article_id;if(!key)return;if(map.has(key)){const old=map.get(key);if(!old.bulletin_weeks.includes(b._week))old.bulletin_weeks.push(b._week);if(!old.bulletin_dates.includes(b.bulletin_date))old.bulletin_dates.push(b.bulletin_date)}else map.set(key,{...a,bulletin_weeks:[b._week],bulletin_dates:[b.bulletin_date]})}));
+  weeklyBulletins.forEach(b=>asArray(b.items).forEach(a=>{const key=articleKey(a),week=articleWeek(a);if(!key||!/^\d{4}-W\d{2}$/.test(week))return;if(map.has(key)){const old=map.get(key);if(!old.bulletin_weeks.includes(week))old.bulletin_weeks.push(week);if(!old.bulletin_dates.includes(b.bulletin_date))old.bulletin_dates.push(b.bulletin_date)}else map.set(key,{...a,bulletin_weeks:[week],bulletin_dates:[b.bulletin_date]})}));
+  weeks=[...new Set([...map.values()].flatMap(a=>a.bulletin_weeks))].sort().reverse();availableWeeks=new Set(weeks);
+  $('bulletin').min=weeks.at(-1);$('bulletin').max=weeks[0];$('bulletin').value=weeks[0];
   weeklyArticles=[...map.values()];$('latest-date').textContent=weekLabel(weeks[0]);$('archive-count').textContent=weeks.length+' haftalık dönem';$('load-state').hidden=true;$('workspace').hidden=false;renderConceptLibrary();renderWeekly();
  }catch(err){$('load-state').innerHTML='<div class="empty"><h3>Arşive ulaşılamıyor</h3><p>'+htmlEsc(err.message)+'</p></div>'}
 }

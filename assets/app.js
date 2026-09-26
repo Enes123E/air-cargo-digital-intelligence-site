@@ -1,5 +1,6 @@
 'use strict';
 let weeklyArticles=[],weeklyBulletins=[],weeks=[],availableWeeks=new Set();
+const categoryOrder={3:0,1:1,2:2};
 const htmlEsc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=x=>{try{const u=new URL(x);return /^https?:$/.test(u.protocol)?u.href:''}catch{return ''}};
 const sourceHost=x=>{try{return new URL(x).hostname.replace(/^www\./,'')}catch{return 'Kaynak adresi yok'}};
@@ -18,7 +19,14 @@ async function loadWeekly(){
  $('load-state').hidden=false;$('workspace').hidden=true;
  try{
   const index=await fetchJson('./data/index.json'),results=await Promise.allSettled((index.bulletins||[]).map(e=>fetchJson('./'+e.path)));
-  weeklyBulletins=results.filter(x=>x.status==='fulfilled').map(x=>({...x.value,_week:x.value.week_id||isoWeek(x.value.bulletin_date)})).sort((a,b)=>String(b.bulletin_date).localeCompare(String(a.bulletin_date)));
+  const candidates=results.filter(x=>x.status==='fulfilled').map(x=>({...x.value,_week:x.value.week_id||isoWeek(x.value.bulletin_date)}));
+  const byWeek=new Map();
+  for(const bulletin of candidates){
+   const current=byWeek.get(bulletin._week),rank=(bulletin.frequency==='weekly'?10:0)+(bulletin.initial_test_snapshot===false?2:0);
+   const currentRank=current?((current.frequency==='weekly'?10:0)+(current.initial_test_snapshot===false?2:0)):-1;
+   if(!current||rank>currentRank||(rank===currentRank&&String(bulletin.bulletin_date).localeCompare(String(current.bulletin_date))>0))byWeek.set(bulletin._week,bulletin);
+  }
+  weeklyBulletins=[...byWeek.values()].sort((a,b)=>String(b._week).localeCompare(String(a._week)));
   if(!weeklyBulletins.length)throw new Error('Henüz okunabilir bülten yok');
   weeks=[...new Set(weeklyBulletins.map(b=>b._week))].sort().reverse();availableWeeks=new Set(weeks);
   $('bulletin').min=weeks.at(-1);$('bulletin').max=weeks[0];$('bulletin').value=weeks[0];
@@ -27,13 +35,15 @@ async function loadWeekly(){
   weeklyArticles=[...map.values()];$('latest-date').textContent=weekLabel(weeks[0]);$('archive-count').textContent=weeks.length+' haftalık dönem';$('load-state').hidden=true;$('workspace').hidden=false;renderConceptLibrary();renderWeekly();
  }catch(err){$('load-state').innerHTML='<div class="empty"><h3>Arşive ulaşılamıyor</h3><p>'+htmlEsc(err.message)+'</p></div>'}
 }
-function filteredArticles(){const q=$('search').value.toLocaleLowerCase('tr').trim(),week=selectedWeek();return weeklyArticles.filter(a=>{const text=[a.title_tr,a.title,a.summary_tr,a.why_important_tr,a.company,a.country,a.source,a.curated_by,...articleTags(a)].join(' ').toLocaleLowerCase('tr');return(!$('category').value||String(a.category)===$('category').value)&&(!week||a.bulletin_weeks.includes(week))&&(!q||text.includes(q))}).sort((a,b)=>String(b.published_at||b.date).localeCompare(String(a.published_at||a.date)))}
+function filteredArticles(){const q=$('search').value.toLocaleLowerCase('tr').trim(),week=selectedWeek();return weeklyArticles.filter(a=>{const text=[a.title_tr,a.title,a.summary_tr,a.why_important_tr,a.company,a.country,a.source,a.curated_by,...articleTags(a)].join(' ').toLocaleLowerCase('tr');return(!$('category').value||String(a.category)===$('category').value)&&(!week||a.bulletin_weeks.includes(week))&&(!q||text.includes(q))}).sort((a,b)=>(categoryOrder[a.category]??9)-(categoryOrder[b.category]??9)||String(b.published_at||b.date).localeCompare(String(a.published_at||a.date)))}
 function tagsHtml(a){return articleTags(a).map(t=>'<span class="tag">'+htmlEsc(t)+'</span>').join('')}
 function coverHtml(a){const image=safeUrl(a.image_url);return image?'<div class="cover"><img src="'+htmlEsc(image)+'" alt="" loading="lazy" referrerpolicy="no-referrer"></div>':'<div class="cover no-image" style="background:linear-gradient(135deg,'+colors[a.category]+',#292929);color:white">'+htmlEsc(names[a.category])+'</div>'}
 function relatedConceptNews(b,c){const ids=new Set(asArray(c.related_article_ids)),words=(c.term+' '+(c.explanation_tr||'')).toLocaleLowerCase('tr');return asArray(b.items).map(a=>({a,score:(ids.has(a.article_id)?100:0)+articleTags(a).filter(t=>t.toLocaleLowerCase('tr').split(/\s+/).some(w=>w.length>4&&words.includes(w))).length})).sort((x,y)=>y.score-x.score).slice(0,3)}
 function renderConcept(){
  const candidates=weekBulletins(selectedWeek()).filter(b=>b.concept?.term).sort((a,b)=>String(b.bulletin_date).localeCompare(String(a.bulletin_date))),b=candidates[0];
- if(!b){$('learning').innerHTML='<div class="empty"><h3>Bu hafta için zorlanmış bir kavram üretilmedi</h3><p>Kavram yalnız haberlerle açık biçimde desteklendiğinde yayımlanır.</p></div>';return}
+ const section=$('learning').closest('section');
+ if(!b){section.hidden=true;$('learning').innerHTML='';return}
+ section.hidden=false;
  const c=b.concept,why=c.why_important_tr||c.why_today_tr||'',cargo=c.cargo_potential_tr||c.cargo_example_tr||'',related=relatedConceptNews(b,c).map(({a})=>{const key=a.record_id||a.url||a.article_id,i=weeklyArticles.findIndex(x=>(x.record_id||x.url||x.article_id)===key);return i<0?'':'<button data-detail="'+i+'">'+htmlEsc(a.title_tr||a.title)+'</button>'}).join('');
  $('learning').innerHTML='<article class="concept"><div class="concept-head"><div><span class="eyebrow">Haftanın kavramı</span><h2>'+htmlEsc(c.term)+'</h2><p class="concept-definition">'+htmlEsc(c.explanation_tr)+'</p></div><time>'+htmlEsc(weekLabel(selectedWeek()))+'</time></div><details class="concept-more"><summary>Kavramı keşfet</summary><div class="concept-grid"><div class="concept-answer"><b>Kısa tanım</b><p>'+htmlEsc(c.explanation_tr)+'</p></div><div class="concept-answer"><b>Neden önemli?</b><p>'+htmlEsc(why)+'</p></div><div class="concept-answer"><b>Hava kargoda potansiyeli</b><p>'+htmlEsc(cargo)+'</p></div></div>'+(related?'<div class="concept-links"><span>Bu kavramı gündeme taşıyan haberler</span>'+related+'</div>':'')+'</details></article>';
 }
